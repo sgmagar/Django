@@ -43,7 +43,7 @@ def user(request):
 	else:
 		context = RequestContext(request, {
 		'title': 'Innoseva' ,
-		'path': name,
+		'upload_info': name,
 		'message': message,
 		
 
