@@ -1,0 +1,11 @@
+Requirements:
+  python 2.7
+  django 1.8
+  
+Process:
+  >Download the zip or clone
+  >from terminal cd Online_Quiz/online_quiz
+  >Run: python manage.py runserver
+  >Go to your browser->localhost:8000
+  >Enjoy the quiz
+  
