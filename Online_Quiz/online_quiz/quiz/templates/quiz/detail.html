@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Question: {{ question_no }}</h1>
+<h2>{{ question.question_text }}</h2>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'quiz:score' %}" method="post">
+{% csrf_token %}
+{% for choice in question.answer_choice_set.all %}
+	<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.correct_choice}}" />
+	<label for="choice{{ forloop.counter }}"> {{ choice.choice_text }}</label><br />
+{% endfor %}
+<input class="btn btn-default" type="submit" value="Submit" />
+</form>
+{% endblock %}
