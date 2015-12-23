@@ -1,0 +1,120 @@
+{% include 'base.html' %}
+
+{% block content %}
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+ 
+                <a class="navbar-brand page-scroll hvr-icon-pulse-shrink" href="{% url 'home' %}">
+                      <span class="light">Earthquake Nepal</span> 
+                </a>
+                           </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    
+                    <li>
+                        <a href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'aids' %}">Aids</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'infographics' %}">Infographics</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'provideaidinfo' %}">Provide aid info</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+ <div class="sidebar-toggle">
+          
+            <center><i class="fa fa-bars" style="margin-top:13px;"></i></center>
+          
+  </div> 
+
+ <!--sidebar starts-->
+<aside id="sidebar">
+    <div id="scrollable">
+        <div class="sidebar-list">
+            <a class="sub-title active">All</a>
+            <div class="sidebar-content">
+                <a class="sidebar-row title-row">
+                    <span class="field-name sub-title">International</span>
+                    <span class="field-value">{{ international }}</span>
+                    </a>
+                    {% for items in international_subcategory %}
+                        <a class="sidebar-row" href="{% url 'aidsdetailsint' subcat=items.donorType %}">
+                            <span class="field-name">{{ items.donorType }}</span>
+                            <span class="field-value">{{ items.agg_amount }}</span>
+                        </a>
+                    {% endfor %}
+                              
+            </div>
+            <div class="sidebar-content">
+                <a class="sidebar-row title-row">
+                    <span class="field-name sub-title">National</span>
+                    <span class="field-value">{{ national }}</span>
+                </a>
+               {% for items in national_subcategory %}
+                    <a class="sidebar-row" href="{% url 'aidsdetailsgov' subcat=items.donorType %}">
+                        <span class="field-name">{{ items.donorType }}</span>
+                        <span class="field-value">{{ items.agg_amount }}</span>
+                    </a>
+                {% endfor %}
+                           
+            </div>
+        </div>
+    </div>
+</aside><!--sidebar ends-->
+
+<div class="left-content">
+     <!-- content -->
+	<div class="title-div">
+           <h2 class="title-data">{{ donorObject.donorName }}: {{ donorObject.amount }}</h2>
+           <p>Donor type: {{ donorObject.donorType }}</p>     
+    </div>
+    
+    <div id="rectangle" style="padding:20px; background:#F4F4F4; margin:0; width:100%;" >
+    	<!--Details starts-->
+        <div class="details">
+        	<p style="float:left;">Recipient: {{ donorObject.recipientName }}</p>
+        	<p style="float:right;">Type: {{ donorObject.recipientType }}</p>
+        	<hr/>
+        	<h2>{{ donorObject.amount }}</h2>
+       		<p>
+        	   {{ donorObject.description }}
+        	</p>
+        	<p style="color:#666;">
+        	Data Source: {{ donorObject.source }}
+        	</p>
+        	<p>
+         	URL : <a href="{{ donorObject.links }}">{{ donorObject.links }}/</a>
+        	</p>
+        </div><!--Details finished-->
+		
+    </div>
+                    
+     <!-- Disclaimer section starts-->
+    <div class=" panel-primary" style="padding:20px; background:#F4F4F4; margin-top:30px;">
+        <p><i>Disclaimer: Data has been collected from various primary and secondary sources as referenced in respective aid pages. 
+        All the amount are shown in US Dollars based on the conversion rates of respective pledge dates. We are not responsible for 
+        any errors reported by these sources but will correct them if reported with proper sources.</i></p>
+        <p><i>Please inform us by sending email to mail@example.com or provide your feedback in the comment box in respective pages
+        if you want to report about any issues.</i></p>
+    </div><!-- Disclaimer section ends-->
+
+</div>
+
+{% endblock %}

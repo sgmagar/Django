@@ -1,0 +1,17 @@
+# Development settings in my local machine
+
+#from settings import *
+
+#DEBUG = TEMPLATE_DEBUG = True
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'nepalfund',
+#        'USER': 'root',
+#        'PASSWORD': 'root',
+#        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
+#        'PORT': '3306',
+#        'ENCODING': 'utf-8',
+#    }
+#}

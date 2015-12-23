@@ -1,0 +1,67 @@
+{% include 'base.html' %}
+
+{% block content %}
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+ 
+                <a class="navbar-brand page-scroll hvr-icon-pulse-shrink" href="{% url 'home' %}">
+                      <span class="light">Earthquake Nepal</span> 
+                </a>
+                           </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li>
+                        <a href="{% url 'about' %}" class="active">About</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'aids' %}">Aids</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'infographics' %}">Infographics</a>
+                    </li>
+                    <li>
+                    	<a class="page-scroll" href="{% url 'provideaidinfo' %}">Provide aid info</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Navigation ends-->
+
+    <!--Content-->
+    <div id="about" >
+    	<div class="row">
+        	<div class="col-lg-8 col-lg-offset-2">
+                <h1 class="page-header text-center">About Us</h1>
+                <div id="about-details">
+                    <p>Nepal Earthquake Relief and Humanitarian aid monitoring system is developed to track and monitor flow of aid for earthquake relief and humanitarian aid in Nepal following the devastating earthquake on April 25, 2015. </p>
+                    <p>The objective of the system is to  ensure transparency and accountability of relief funds and resources to ensure that it reaches to targeted beneficiaries. As more aid and resources are being channeled for rescue, rehabilitation and reconstruction efforts in Nepal from various national and international stakeholders, the question of effective mobilization is a burning question. We believe that transparency of funds in an open and accessible manner within a central platform is perhaps the first step to ensure effective mobilization of available resources.</p>
+                    <p>Rather than being a mere technical platform to track flow of funds for immediate relief, the system is targeted to ensure greater transparency of relief aid being mobilized by various national and international actors and individuals on a long term manner. As we move along, we will equip the system with more features to trace utilization of funds and link it with real need of victims at the ground. </p>
+                    <p>Nepal Earthquake Relief and Humanitarian aid monitoring system is developed to track and monitor flow of aid for earthquake relief and humanitarian aid in Nepal following the devastating earthquake on April 25, 2015. </p>
+                    <p>The objective of the system is to  ensure transparency and accountability of relief funds and resources to ensure that it reaches to targeted beneficiaries. As more aid and resources are being channeled for rescue, rehabilitation and reconstruction efforts in Nepal from various national and international stakeholders, the question of effective mobilization is a burning question. We believe that transparency of funds in an open and accessible manner within a central platform is perhaps the first step to ensure effective mobilization of available resources.</p>
+                    <p>Rather than being a mere technical platform to track flow of funds for immediate relief, the system is targeted to ensure greater transparency of relief aid being mobilized by various national and international actors and individuals on a long term manner. As we move along, we will equip the system with more features to trace utilization of funds and link it with real need of victims at the ground. </p>
+                </div><!--about-details ends-->
+            </div>
+        </div>   
+    </div>
+    <!--Content ends-->
+    
+<!-- footer section start-->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>Developed By:<a href="#" target="_blank"> Saurav Gharti</a></p>
+        </div>
+    </footer>
+<!-- footer section ends -->
+{% endblock %}
+

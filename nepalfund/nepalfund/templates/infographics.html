@@ -1,0 +1,300 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Infographics</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/design.css' %}" rel="stylesheet">
+    
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+            ${demo.css}
+    </style>
+    <script type="text/javascript">
+    
+            $(function () {
+              // Bar diagram
+
+                // $('#bardiagram').highcharts({
+                //     chart: {
+                //         type: 'spline'
+                //     },
+                //     title: {
+                //         text: 'Nepal Relief Fund'
+                //     },
+                //     subtitle: {
+                //         text: 'http://pmrelief.opmcm.gov.np/'
+                //     },
+                //     xAxis: {
+                //         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                //             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                //     },
+                //     yAxis: {
+                //         title: {
+                //             text: 'Funds (NRP)'
+                //         }
+                //     },
+                //     tooltip: {
+                //         crosshairs: true,
+                //         shared: true
+                //     },
+                //     plotOptions: {
+                //         spline: {
+                //             marker: {
+                //                 radius: 4,
+                //                 lineColor: '#666666',
+                //                 lineWidth: 1
+                //             }
+                //         }
+                //     },
+                //     series: [{
+                //         name: 'Total Funds Collected',
+                //         marker: {
+                //             symbol: 'square'
+                //         },
+                //         data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
+                //             y: 26.5,
+                //         }, 23.3, 18.3, 13.9, 9.6]
+
+                //     }, {
+                //         name: 'Total Funds Allocated',
+                //         marker: {
+                //             symbol: 'diamond'
+                //         },
+                //         data: [{
+                //             y: 3.9,
+                //         }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                //     }]
+                // });
+                
+                //Pie Chart
+                    // Build the chart
+                    //International
+                    $.getJSON('/infographdataint', function(data){
+                        var dataa=[];
+                        for(var i=0;i<data.intdata.length;i++){
+                            var singleData={ name:data.intdata[i].donorType,y:data.intdata[i].percent};
+                            dataa.push(singleData);
+                        }
+
+                        $('#piechartint').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: 'Nepal Relief Funds (International)'
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: false
+                                    },
+                                    showInLegend: true
+                                }
+                            },
+                            series: [{
+                                name: 'Source',
+                                colorByPoint: true,
+                                data: dataa
+                            }]
+                        });
+                    });
+                    
+                    //National
+                    $.getJSON('/infographdatagov', function(data){
+                        var dataa=[];
+                        for(var i=0;i<data.govdata.length;i++){
+                            var singleData={ name:data.govdata[i].donorType,y:data.govdata[i].percent};
+                            dataa.push(singleData);
+                        }
+
+                        $('#piechartgov').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: 'Nepal Relief Funds (National)'
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: false
+                                    },
+                                    showInLegend: true
+                                }
+                            },
+                            series: [{
+                                name: 'Source',
+                                colorByPoint: true,
+                                data: dataa
+                            }]
+                        });
+                    });
+                    
+                    $.getJSON('/infographdatacrowd', function(data){
+                        var dataa=[];
+                        for(var i=0;i<data.crowddata.length;i++){
+                            var singleData={ name:data.crowddata[i].fundraiser,y:data.crowddata[i].percent};
+                            dataa.push(singleData);
+                        }
+                        console.log(dataa);
+                        $('#piechartcrowd').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: 'Nepal Relief Funds (Crowd Funding)'
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: false
+                                    },
+                                    showInLegend: true
+                                }
+                            },
+                            series: [{
+                                name: 'Source',
+                                colorByPoint: true,
+                                data: dataa
+                            }]
+                        });
+                    });
+                
+
+            });                   
+      
+    </script>
+  </head>
+  <body>
+  <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+ 
+                <a class="navbar-brand page-scroll hvr-icon-pulse-shrink" href="{% url 'home' %}">
+                      <span class="light">Earthquake Nepal</span> 
+                </a>
+                           </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    
+                    <li>
+                        <a href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'aids' %}">Aids</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'infographics' %}" class="active">Infographics</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'provideaidinfo' %}">Provide aid info</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+<!-- Navigation ends-->
+
+<div class="container-fluid">
+    <div class="row infographic">
+           <h1 class="text-center" style="font-size:40px; margin:30px 0 60px 0;" >Infographics</h1>
+           <script src="https://code.highcharts.com/highcharts.js"></script>
+           <script src="https://code.highcharts.com/modules/exporting.js"></script>
+           <!-- <div class="col-md-6 col-sm-12">
+             <div id="bardiagram" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+           </div> -->
+           <!-- <div class="col-md-6 col-sm-12"> -->
+                <!-- <p class="text-center" style="font-size:15px;"> -->
+                <div style="text-align:center;">
+                    <a href="#" onclick="piechartint_show()"><button class=" btn btn-success">International</button></a>&nbsp;<a href="#" onclick="piechartgov_show()"><button class="btn btn-danger">National</button></a>&nbsp;<a href="#" onclick="piechartcrowd_show()"><button class="btn btn-info">Crowd Funding</button></a>
+                </div>
+                <!-- </p> -->
+                <div id="piechartint" style="height: 400px; max-width: 600px; margin: 0 auto"></div>
+                <div id="piechartgov" style="height: 400px; max-width: 600px; margin: 0 auto;display:none;"></div>
+                <div id="piechartcrowd" style="height: 400px; max-width: 600px; margin: 0 auto;display:none;"></div>
+           <!-- </div>  -->
+    </div>
+</div>
+
+<!-- footer section start-->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>Powered by:<a href="http://www.getengineeringtroop.com" target="_blank"> Get Engineering Troop</a></p>
+        </div>
+    </footer>
+
+    <!-- footer section ends -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>  
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'js/earthquake.js' %}"></script>
+    <script type="text/javascript">
+    function piechartint_show(){
+        document.getElementById("piechartcrowd").style.display="none";
+        document.getElementById("piechartgov").style.display="none";
+        document.getElementById("piechartint").style.display="block";
+    }
+    function piechartgov_show(){
+        document.getElementById("piechartint").style.display="none";
+        document.getElementById("piechartcrowd").style.display="none";
+        document.getElementById("piechartgov").style.display="block";
+    }
+    function piechartcrowd_show(){
+        document.getElementById("piechartint").style.display="none";
+        document.getElementById("piechartgov").style.display="none";
+         document.getElementById("piechartcrowd").style.display="block";
+    }
+    </script>
+
+
+</body>
+</html>

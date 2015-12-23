@@ -1,0 +1,161 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+        <!--Custom Navigation -->
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+     
+                    <a class="navbar-brand page-scroll hvr-icon-pulse-shrink" href="#page-top">
+                    <!-- Website brand -->
+                          <span class="light">Earthquake Nepal</span> 
+                    </a>
+                 </div><!--navbar-header ends-->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about' %}">About</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'aids' %}" >Aids</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'infographics' %}" >Infographics</a>
+                        </li>
+                        <li>
+                        	<a href="{% url 'provideaidinfo' %}" >Provide aid info</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse ends-->
+         
+            </div><!-- /.container ends -->
+            
+        </nav><!--Navigation ends-->
+
+
+    <!-- <table id="slideleft">
+      <tr class="slideLeftItem" style="position:fixed;left:-320px;z-index:1000;height:100%;">
+        <td><img src="https://lh3.googleusercontent.com/-GMJe-Am-U9Q/T4p4bZu7jDI/AAAAAAAAAFs/qQqmMGn-wwg/s800/facebook-vertical.png" style="top:5px; position:absolute; border-left-width:5px; left:318px;"/></td>
+        <td class="contentBox" style="border:solid 5px #5370AD; width:300px;height:300px;position:relative;border-radius:5px;background-color:white;">
+          <div id="fb-root"></div>
+          <fb:like-box href="https://www.facebook.com/getengineeringtroop?fref=ts" width="300" show_faces="true" stream="false" header="false">
+          </fb:like-box>
+        </td>
+      </tr>
+    </table> -->
+
+
+
+        <!-- Intro-->
+        <header class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                           <center><a href="#" style="color:#fff;"><h1 class="heading  shake shake-constant shake-little">{{ total }}</h1></a></center>
+                            <p class="intro-text">Donate to Nepal Earthquake Relief.<br> Help Nepal Come Back</p>
+                            <a href="#aids" class="btn btn-circle page-scroll">
+                                <i class="fa fa-angle-double-down animated"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- intro ends -->
+
+     <!-- Aids/Funds Section -->
+        <section id="aids">
+           <div class="aid-section">
+           	<div class="container">
+            	<div class="row">
+                	<div class="col-lg-4 international-aid">
+                    <h2 class="text-center">International: <br/> <br/><label class="donation-amt">{{ international }}</label></h2>
+
+                        
+                        {% for items in international_subcategory %}         
+                          <!--Progress bar-->
+                          <a href="{% url 'aidsdetailsint' subcat=items.donorType %}">
+                            <div class="progress">
+                    					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ items.percent }}"
+                    					  aria-valuemin="0" aria-valuemax="100" style="width:{{ items.percent }}%;color:black;">
+                   					   <span style="position:absolute;display:block;text-align:left;margin-left:10px">{{ items.donorType }}&nbsp;&nbsp;({{ items.agg_amount }})</span>
+                    					</div>
+                  				</div>
+                          </a>
+                        {% endfor %}
+
+            
+                    </div><!--International aid finished-->
+                    
+                    <div class="col-lg-4 national-aid">
+                        <h2 class="text-center">National: <br/> <br/><label class="donation-amt">{{ national }}</label></h2>
+                         {% for items in national_subcategory %}         
+                          <!--Progress bar-->
+                          <a href="{% url 'aidsdetailsgov' subcat=items.donorType %}">
+                            <div class="progress">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ items.percent }}"
+                                aria-valuemin="0" aria-valuemax="100" style="width:{{ items.percent }}%;color:black;%">
+                               <span style="position:absolute;display:block;text-align:left;margin-left:10px">{{ items.donorType }}&nbsp;&nbsp;({{ items.agg_amount }})</span>
+                              </div>
+                          </div>
+                          </a>
+                        {% endfor %}      
+
+                    </div><!--National aid finished-->
+                    <div class="col-lg-4 national-aid">
+                        <h2 class="text-center">Crowd Funding: <br/><br/><label class="donation-amt">{{ crowdFunding }}</label></h2>
+                         {% for items in crowdFundingSubcategory %}         
+                          <!--Progress bar-->
+                          
+                            <div class="progress">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ items.percent }}"
+                                aria-valuemin="0" aria-valuemax="100" style="width:{{ items.percent }}%;color:black;%">
+                               <span style="position:absolute;display:block;text-align:left;margin-left:10px">{{ items.fundraiser }}&nbsp;&nbsp;({{ items.raised }})</span>
+                              </div>
+                          </div>
+                          
+                        {% endfor %}      
+
+                    </div><!-- crowd funding end -->
+           
+        </div>
+         <p class="text-center">You may click on charts above to see more detailed view</p>
+      </section>  
+     
+     <!--Submit aid info-->
+        <section class="submitaidinfo" style="padding-top:55px;">
+        	<div class="container">
+             	<div class="col-lg-12 aidinfo">
+                   <p class="text-center">If you want to register aid information that is not yet captured,</p>
+                   <center><a href="{% url 'provideaidinfo' %}">
+                   <button class="btn-aid hvr-shutter-out-horizontal">Submit aid information here</button></a></center>
+                   <p class="text-center">Please write to us, if you have any feedback or suggestion.</p>
+    			   <p class="text-center">Please stay tuned for more refined information. We're working on a constant basis.</p>
+                </div>
+            </div>
+        </section>
+          
+        <!-- footer section start-->
+        <footer class="footer">
+            <div class="container text-center">
+                <p>Developed By:<a href="#" target="_blank"> Saurav Gharti</a></p>
+            </div>
+        </footer>
+        <!-- footer section ends -->
+    </div>
+
+
+{% endblock %}

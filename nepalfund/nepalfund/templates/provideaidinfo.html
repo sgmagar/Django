@@ -1,0 +1,261 @@
+{% load staticfiles %}
+{% include 'base.html' %}
+
+{% block content %}
+   <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+ 
+                <a class="navbar-brand page-scroll hvr-icon-pulse-shrink" href="{% url 'home' %}">
+                      <span class="light">Earthquake Nepal</span> 
+                </a>
+                           </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    
+                    <li>
+                        <a href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'aids' %}">Aids</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'infographics' %}" >Infographics</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'provideaidinfo' %}" class="active">Provide aid info</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Navigation ends-->
+
+    <div class="aid-info-form">
+    	<div class=" container-fluid">
+        	<div class="col-lg-8 col-lg-offset-2">
+            	<h2 class="text-center title">Submit relief aid information</h2>
+                <p class="text-center sub-heading">If you are (or know of) an organisation or individual that has provided relief aid for
+                eathquake rescue, rehabilitation and reconstrction effort, please submit the details below to have it listed in 
+                our system. Join our effort to make relief transpaent an effective.</p>
+                
+                <!----Form---->
+                <form action="/provideaidinfo/" role="form" class="aid-form" id="aid_form" method="POST">{% csrf_token %}
+                <fieldset class="panel">
+                <legend>Donor Information</legend>
+        		
+                
+                       
+                        
+				<div class="form-group">
+					<label for="donorName">Donor name <span style="color:red;">*</span></label>
+						<div class="left-inner-addon ">
+							<input type="text" class="form-control" id="donorName" name="donorName" placeholder="Donor name" required>
+						</div>
+				</div>
+
+                <div class="form-group">
+                    <label for="donorWebsite">Donor Website</label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="donorWebsite" name="donorWebsite" placeholder="Donor website" >
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="donorType">Donor Type</label>
+                        <div class="left-inner-addon">
+                            <select class="form-control" id="donorType" name="donorType">
+                      
+                                <option>Government</option>
+                                <option>Multilateral</option>
+                                <option>Corporates</option>
+                                <option>I/NGOs</option>
+                                <option>Individual</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                </div>
+              <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////          -->
+                <div class="form-group">
+                    <label for="donorCountry">Donor Country <span style="color:red;">*</span></label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="donorCountry" name="donorCountry" placeholder="Donor country" required>
+                        </div>
+                </div>
+                </fieldset>
+                   
+                <legend>Recipient Information</legend>
+				
+                <div class="form-group">
+                    <label for="recipientName">Recipient name <span style="color:red;">*</span></label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="recipientName" name="recipientName" placeholder="Recipient name" required>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipientWebsite">Recipient Website</label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="recipientWebsite" name="recipientWebsite" placeholder="Recipient website" >
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipientType">Recipient Type</label>
+                        <div class="left-inner-addon">
+                            <select class="form-control" id="recipientType" name="recipientType">
+                                
+                                <option>Government</option>
+                                <option>Multilateral</option>
+                                <option>Corporates</option>
+                                <option>I/NGOs</option>
+                                <option>Individual</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                </div>
+                        
+                <div class="form-group">
+                    <label for="recipientCountry">Recipient Country</label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="recipientCountry" name="recipientCountry" placeholder="Recipient country" required>
+                        </div>
+                </div>		
+                
+                        
+                <legend>Transaction Information</legend>
+				
+                <div class="form-group">
+                    <label for="transactionDate">Transaction Date <span style="color:red;">*</span></label>
+                        <div class="left-inner-addon ">
+                               <div id="datetimepicker" class="input-append date">
+									<input type="text" class="form-control-static" name="transactionDate" required></input>
+									<span class="add-on form-control-static glyphicon glyphicon-calendar">
+									<i data-time-icon="icon-time" data-date icon="icon-calendar"></i>
+									</span>
+                                </div>   
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount <span style="color:red;">*</span></label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount" required>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="currency">Currency <span style="color:red;">*</span></label>
+                        <div class="left-inner-addon">
+                            <select class="form-control" id="currency" name="currency" required>
+                               
+                                <option>USD</option>
+                                <option>Pound Sterling</option>
+                                <option>Euros</option>
+                            </select>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="aidType">Aid Type <span style="color:red;">*</span></label>
+                        <div class="left-inner-addon ">
+                            <input type="radio" name="aidType" value="Cash" required>Cash
+                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="aidType" value="Kind" required>Kind
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionType">Transaction type</label>
+                        <div class="left-inner-addon">
+                            <select class="form-control" id="transactionType" name="transactionType">
+                       
+                                <option>Disbursement</option>
+                                <option>Commitment</option>
+                            </select>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                        <div class="left-inner-addon ">
+                            <textarea class="form-control" rows="5" column="30" name="description" placeholder="Provide details about this transaction " ></textarea>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="source">Source <span style="color:red;">*</span></label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="source" name="source" required>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="links">Links</label>
+                        <div class="left-inner-addon ">
+                            <input type="url" class="form-control" id="links" name="links">
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sector">Sector</label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="sector" name="sector"  >
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="targetGeography">Target Geography</label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="targetGeography" name="targetGeography"  >
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vdc">VDC</label>
+                        <div class="left-inner-addon ">
+                            <input type="text" class="form-control" id="vdc" name="vdc" placeholder="Name of village" >
+                        </div>
+                </div>
+
+                				
+                <button type="submit" class="hvr-shutter-out-horizontal" id="submit_btn" style="margin-bottom:20px; height:50px;">Submit Aid Information</button>
+			    </form><!--Form ends-->
+            </div>
+        </div>
+    </div>
+    
+<!-- footer section start-->
+    <footer class="footer">
+        <div class="container text-center">
+           <p>Developed By:<a href="#" target="_blank"> Saurav Gharti</a></p>
+        </div>
+    </footer>
+<!-- footer section ends -->
+<script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'js/earthquake.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}">
+    </script>
+    <script type="text/javascript">
+      $('#datetimepicker').datetimepicker({
+        format: 'yyyy-MM-dd',
+   
+      });
+    </script>
+{% endblock %}
