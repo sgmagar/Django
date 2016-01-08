@@ -1,0 +1,8 @@
+This project provides the insight for creating the register and login system with the django. Here 
+in this project, I have used almost all you will need to create login system with django. This will 
+help the new comer to get going with django and help the experience ones who have not worked with 
+login system also. Here, I have included extending the User model of django and create the user profile
+with being associated with the User of django, which gives full functionality to use the authentication system
+provided by django itself.
+I have modified the user view in the admin area and used the django form and used widget to add attributes to the 
+form element. I have also used form validation provided by django.
