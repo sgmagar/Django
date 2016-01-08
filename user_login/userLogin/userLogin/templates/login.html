@@ -1,0 +1,20 @@
+{% include 'base.html' %}
+
+	{% block content %}
+		<div>
+			{% include 'navbar.html' %}
+		</div>
+		<br/><br/><br/><br/><br/>
+		<h1>Login to Here</h1>
+		<span style="color:red;background:grey">{{ error }}</span>
+        <form id="login_form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
+
+            <input type="submit" value="Login" />
+        </form>
+
+    {% endblock %}

@@ -1,0 +1,35 @@
+{% include 'base.html' %}
+
+	{% block content %}
+		<div>
+			{% include 'navbar.html' %}
+		</div>
+		<br/><br/><br/><br/><br/>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<h3 style="text-align:center">Register Here</h3>
+					<form action="{% url 'register' %}" method="post">{% csrf_token %}
+						{% for field in userForm %}
+							
+					            {{ field }}<span style="color:red">{% for error in field.errors %}<li>{{ error }}</li>{% endfor %}</span>
+					           <br/>
+					        
+						{% endfor %}
+						{% for field in userProfileForm %}
+							
+					            <span style="color:red">{% for error in field.errors %}<li>{{ error }}</li>{% endfor %}</span>
+					            {{ field }}
+					            <br/>
+					        
+						{% endfor %}
+						<input type="submit" class="btn btn-success" style="float:right"value="Register" />
+					</form>
+				</div>
+				<div class="col-md-4"></div>
+				</div>
+		</div>
+		{% include 'footer.html' %}
+	{% endblock %}
